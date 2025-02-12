@@ -26,10 +26,18 @@ public class Account {
         this.lastName = lastName;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getBalance() {
         return balance;
     }
 
+    /**
+     *
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
             throw new IllegalArgumentException("Invalid first name can't be blank for id" + id);
@@ -38,6 +46,10 @@ public class Account {
         }
     }
 
+    /**
+     *
+     * @param lastName
+     */
     public void setLastName(String lastName) {
         if (lastName == null || lastName.isEmpty()) {
             throw new IllegalArgumentException("Invalid last name can't be blank for id" + id);
@@ -46,6 +58,10 @@ public class Account {
         }
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -55,6 +71,10 @@ public class Account {
 
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void withdrawal(double amount) {
         if (amount > balance) {
             throw new IllegalArgumentException("Cannnot withdraw amount [" + amount + "]. Greater than the account balance ["+ balance+ "].");
@@ -65,6 +85,10 @@ public class Account {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return id + " " + firstName + " " + lastName;
     }
