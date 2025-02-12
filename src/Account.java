@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
-
+/**
+ *
+ */
 public class Account {
     private static int lastId;
     private final int id = 1;
@@ -14,6 +16,11 @@ public class Account {
 
     }
 
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     */
     public Account(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -50,7 +57,7 @@ public class Account {
 
     public void withdrawal(double amount) {
         if (amount > balance) {
-            throw new IllegalArgumentException("Cannnot withdraw amount [" + amount + "] Greater than the account balance ["+ balance+ "].");
+            throw new IllegalArgumentException("Cannnot withdraw amount [" + amount + "]. Greater than the account balance ["+ balance+ "].");
         } else if (amount <= 0) {
             throw new IllegalArgumentException("Invalid amount." + amount +" Must be greater than 0");
         } else {
