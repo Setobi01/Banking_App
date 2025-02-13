@@ -27,3 +27,9 @@ setLastName(String lastName) – Sets the last name of the account holder. Throw
 deposit(double amount) – Adds a valid amount to the account balance. Throws an exception if the amount is zero or negative.
 withdrawal(double amount) – Withdraws money from the account if there are sufficient funds. Throws an exception if the amount is invalid or exceeds the balance.
 toString() – Returns a formatted string containing the account ID and account holder's name.
+
+Authors
+
+[Sean Tobin](https://github.com/Setobi01)  
+[Confidence Mawuli Affang](https://github.com/confidenceaffang)  
+
