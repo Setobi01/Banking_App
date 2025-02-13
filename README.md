@@ -7,7 +7,7 @@ Features
 3. Validate user input for secure transactions
 
 Demo
-
+![Demo GIF](Banking_App – BankApp.java 2025-02-13 12-02-18.gif)
 
 Installation
 Clone the repository:
