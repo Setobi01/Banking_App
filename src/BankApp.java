@@ -53,7 +53,7 @@ public class BankApp {
             try {
                 Account account = new Account(firstName, lastName);
                 System.out.println(SINGLE_DASH_LINE);
-                System.out.println("Account create! ID #" + account + ":");
+                System.out.println("Account create! " + account);
                 return account;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
