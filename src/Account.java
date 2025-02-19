@@ -1,102 +1,130 @@
 /**
- * This is the wrapper class for the account where all the field and methods are listen in
+ * Represents a bank account with basic functionalities such as deposit, withdrawal,
+ * and balance inquiry. Each account is uniquely identified by an ID.
+ *
+ * @author Confidence Affang,Sean Tobin
+ * @version 1.00
+ * @see <a href="https://github.com/Setobi01/Banking_App.git">GitHub Repository</a>
  */
 public class Account {
+    /**
+     * this is used to track the last assigned account ID to ensure uniqueness.
+     */
     private static int lastId = 0;
+
+    /**
+     * this is the unique identifier for each account.
+     */
     private final int id;
+
+    /**
+     * this hold the first name of the account holder.
+     */
     private String firstName;
+
+    /**
+     * this is the last name of the account holder.
+     */
     private String lastName;
+
+    /**
+     * this is the current balance of the account.
+     */
     private double balance;
 
     /**
-     * this method sets the curent id to the last id incremented by 1
+     * this is the default constructor that initializes the account with a unique ID and balance.
      */
     public Account() {
         this.id = ++lastId;
-
-
-    }
-
-    /**
-     * this method sets the firstname and also the id and the balance too
-     *
-     * @param firstName this is the firstname of the user
-     * @param lastName  this is the lastname of the user
-     */
-    public Account(String firstName, String lastName) {
-        this.id = ++lastId;
-        setFirstName(firstName);
-        setLastName(lastName);
         this.balance = 0.0;
     }
 
     /**
-     * @return this method returns the current balance to the user
+     * this is the overloaded constructor that initializes the account with the provided
+     * first name and last name while calling the default constructor.
+     *
+     * @param firstName The first name of the account holder.
+     * @param lastName  The last name of the account holder.
+     */
+    public Account(String firstName, String lastName) {
+        this(); // Calls the default constructor to set ID and balance
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
+    /**
+     * retrieves and returns the current balance of the account.
+     *
+     * @return The current balance.
      */
     public double getBalance() {
-
         return balance;
     }
 
     /**
-     * this method is used to check for errors if the user doesn't enter any character when asked for their first name and sets the firstname if they user inputted thier name
+     * sets the first name of the account holder after validation.
      *
-     * @param firstName this is the firstname of the user
+     * @param firstName The first name of the account holder.
+     * @throws IllegalArgumentException if the user doesn't input anything for the firstname
      */
     public void setFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
-            throw new IllegalArgumentException("Invalid first name can't be blank for id" + id);
+            throw new IllegalArgumentException("Invalid first name. It cannot be blank for ID: " + id);
         } else {
             this.firstName = firstName;
         }
     }
 
     /**
-     * this method is used to check for errors if the user doesn't enter any character when asked for their last name and sets the lastname if they user inputted thier name
+     * sets the last name of the account holder after validation.
      *
-     * @param lastName this is thelastname of the user
+     * @param lastName The last name of the account holder.
+     * @throws IllegalArgumentException if the user doesn't input anything for the lastname
      */
     public void setLastName(String lastName) {
         if (lastName == null || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Invalid last name can't be blank for id" + id);
+            throw new IllegalArgumentException("Invalid last name. It cannot be blank for ID: " + id);
         } else {
             this.lastName = lastName;
         }
     }
 
     /**
-     * this method is used to validate that the amount to be deposited is greated than 0 and the add it to the balance
+     * deposits a specified amount into the account. The amount must be greater than zero.
      *
-     * @param amount this is the amount the user wants to deposit in the account
+     * @param amount The amount to deposit.
+     * @throws IllegalArgumentException if the deposit amount is less than or equal to zero.
      */
     public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Invalid deposit amount. It must be greater than 0.");
         } else {
-            throw new IllegalArgumentException("Invalid amount. Must be greater than 0 ");
+            balance += amount;
         }
-
     }
 
     /**
-     * this method is used to validate that the amount to be withdrawn is not greater than the current account balance and also greater than 0 and then subtracts it from the bank balance
+     * Withdraws a specified amount from the account after validation.
+     * The amount must be greater than zero and not exceed the current balance.
      *
-     * @param amount this is the amount to be withdrawn from the account
+     * @param amount The amount to withdraw.
+     * @throws IllegalArgumentException if the amount is greater than the balance or less than or equal to zero.
      */
     public void withdrawal(double amount) {
-        if (amount > balance) {
-            throw new IllegalArgumentException("Cannnot withdraw amount [" + amount + "]. Greater than the account balance [" + balance + "].");
-        } else if (amount <= 0) {
-            throw new IllegalArgumentException("Invalid amount." + amount + " Must be greater than 0");
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Invalid withdrawal amount. It must be greater than 0.");
+        } else if (amount > balance) {
+            throw new IllegalArgumentException("Cannot withdraw amount [" + amount + "]. Insufficient funds. Current balance: [" + balance + "].");
         } else {
             balance -= amount;
         }
     }
 
     /**
-     * this overides the output from the Account method called and returns the string below
+     * returns a string containing the account details including ID, name
      *
-     * @return the string of the id and the name
+     * @return A string representation of the account.
      */
     @Override
     public String toString() {
